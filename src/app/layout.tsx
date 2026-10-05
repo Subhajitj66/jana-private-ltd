@@ -9,7 +9,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "JanaOilGreen | Buy & Sell Used Cooking Oil",
+    title: "JanaOilGreen | Buy & Sell Used Cooking Oil",
   description: "Turn your waste oil into value with JanaOilGreen. We make used cooking oil collection easy and profitable.",
   verification: {
     google: "L3en7SfwnWQP7JVIpu2eU2rrdFd9SRwS-gi3IGYQINI",
@@ -20,7 +20,7 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-})
+}) { 
   return (
     <html lang="en" className={`${outfit.variable} scroll-smooth antialiased`} suppressHydrationWarning>
       <body className="min-h-screen bg-gray-50 flex flex-col font-sans" suppressHydrationWarning>

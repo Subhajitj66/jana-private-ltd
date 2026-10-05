@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Chatbot from "@/components/Chatbot";
 
 // Reusable Accordion Component
 const AccordionItem = ({ title, defaultOpen = false }: { title: string, defaultOpen?: boolean }) => {
@@ -90,7 +91,7 @@ export default function Home() {
 
   const handleWhatsAppSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `Hello! I would like to ${transactionType === 'sell' ? 'Sell' : 'Buy'} Used Oil.
+    const message = `Hello JanaOilGreen! I am placing an order to ${transactionType === 'sell' ? 'Sell' : 'Buy'} Used Oil.
 *Name:* ${formData.name}
 *Company:* ${formData.company}
 *Phone:* ${formData.phone}
@@ -246,22 +247,22 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-gray-900 font-medium">Your name</label>
-                  <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
+                  <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full bg-white text-gray-900 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-gray-900 font-medium">Company or organisation</label>
-                  <input type="text" required value={formData.company} onChange={(e) => setFormData({...formData, company: e.target.value})} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
+                  <input type="text" required value={formData.company} onChange={(e) => setFormData({...formData, company: e.target.value})} className="w-full bg-white text-gray-900 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-gray-900 font-medium">Phone number</label>
-                  <input type="tel" required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
+                  <input type="tel" required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full bg-white text-gray-900 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-gray-900 font-medium">State / Union Territory</label>
-                  <select required value={formData.state} onChange={(e) => setFormData({...formData, state: e.target.value})} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none appearance-none">
+                  <select required value={formData.state} onChange={(e) => setFormData({...formData, state: e.target.value})} className="w-full bg-white text-gray-900 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none appearance-none">
                     <option value="" disabled>Select state</option>
                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                     <option value="Delhi">Delhi</option>
@@ -278,22 +279,27 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-gray-900 font-medium">City or district</label>
-                  <input type="text" required value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
+                  <input type="text" required value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} className="w-full bg-white text-gray-900 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-gray-900 font-medium">Approximate quantity</label>
-                  <input type="text" placeholder="e.g. 200 litres/month" required value={formData.quantity} onChange={(e) => setFormData({...formData, quantity: e.target.value})} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
+                  <label className="text-gray-900 font-medium">Approximate quantity (in liters)</label>
+                  <input type="text" placeholder="e.g. 200 liters" required value={formData.quantity} onChange={(e) => setFormData({...formData, quantity: e.target.value})} className="w-full bg-white text-gray-900 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-gray-900 font-medium">Additional details (optional)</label>
-                <textarea rows={4} placeholder="Oil type, quality expectations, schedule or other requirements" value={formData.details} onChange={(e) => setFormData({...formData, details: e.target.value})} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none resize-none" />
+                <textarea rows={4} placeholder="Oil type, quality expectations, schedule or other requirements" value={formData.details} onChange={(e) => setFormData({...formData, details: e.target.value})} className="w-full bg-white text-gray-900 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-[#efb632]/50 focus:border-[#efb632] outline-none resize-none" />
               </div>
 
-              <button type="submit" className="w-full bg-[#efb632] hover:bg-[#dca324] text-gray-900 text-xl font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 mt-4 shadow-sm">
-                Continue to WhatsApp <ArrowRight />
-              </button>
+              <div className="flex flex-col gap-3 mt-6">
+                <button type="submit" className="w-full bg-[#efb632] hover:bg-[#dca324] text-gray-900 text-xl font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm">
+                  Place Order <ArrowRight />
+                </button>
+                <a href="https://wa.me/918981429492?text=Hi%20JanaOilGreen,%20I%20have%20an%20inquiry." target="_blank" rel="noopener noreferrer" className="w-full bg-white hover:bg-gray-50 text-emerald-700 border border-emerald-200 text-lg font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2">
+                  <Phone size={20} /> Contact us on WhatsApp
+                </a>
+              </div>
               
               <p className="text-center text-sm text-gray-500 mt-4">
                 By continuing, you agree to be contacted about this enquiry and accept our <a href="#policies" className="underline hover:text-gray-800">Terms</a> and <a href="#policies" className="underline hover:text-gray-800">Privacy</a>
@@ -686,6 +692,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Floating Chatbot & WhatsApp */}
+      <Chatbot />
     </main>
   );
 }

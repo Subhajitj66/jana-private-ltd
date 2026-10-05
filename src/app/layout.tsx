@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "JanaOilGreen | Buy & Sell Used Cooking Oil",
   description: "Turn your waste oil into value with JanaOilGreen. We make used cooking oil collection easy and profitable.",
   verification: {
-    google: "google45575146508f5399",
+    google: "L3en7SfwnWQP7JVIpu2eU2rrdFd9SRwS-gi3IGYQINI",
   },
 };
 
